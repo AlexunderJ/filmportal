@@ -1,27 +1,17 @@
 import React from 'react';
 
-const List = props => {
+const List = ({ films, onShowDetails }) => {
 
-    let list = null;
-        
-    if(props.films[0]){
-    list = <div>
+    if (!films || films.length === 0 || films[0].Error) {
+        return null;
+    }
 
-    {props.films.map(film=>(film.Search.map(title=>(
-        <li key={title.imdbID} onClick={()=> props.onShowDetails(title.imdbID)}>
+    const list = films.map(film=>(film.Search.map(title=>(
+        <li key={title.imdbID} onClick={()=> onShowDetails(title.imdbID)}>
             {title.Title}
             <span> - {title.Year}</span>
         </li>
-        ))))}
-        </div>
-    
-          }else{
-              list = <h1>Dupa</h1>
-          }
-        
-        
-    
-
+    ))))
 
     return (
         <div>

@@ -1,17 +1,26 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axiosMD from '../MoviDatabase/axios/axios';
 import List from '../presentation/List';
 import Details from '../presentation/Details';
+import { useSelector } from "react-redux";
+import {selectSearchFilm} from '../MoviDatabase/selectors/selector';
+
+const useSelectors = () => ({
+  title: useSelector(selectSearchFilm),
+})
 
 export default function FilmBox() {
-    const [filmState, setFilm] = useState("");
+    const {title} = useSelectors();
+    const [filmState, setFilm] = useState(title);
     const [ratingState, setRating] = useState("");
     const [serchFilms, setSerchFilms] = useState([]);
     const [detailFilms, setDetailFilms] = useState([]);
 
+    useEffect(() => {
+      setFilm(title);
+      addFilm({title:title, rating: ratingState})
+    }, [title]);
     /// - AXIOS METHOD
-    
-
     
     const addFilm = film =>{
 

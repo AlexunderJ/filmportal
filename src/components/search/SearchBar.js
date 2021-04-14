@@ -1,33 +1,38 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { selectSearchFilm } from '../MoviDatabase/selectors/selector';
 
-export const SearchBar = ({search, searchTitle}) => {
-    const [serchFilms, setSerchFilms] = useState('');
+const useActions = () => {
+    const dispatch = useDispatch();
+
+    return {
+        searchTitle: (title) => {
+            dispatch({type: 'SEARCH_TITLE', title})
+        }
+    }
+}
+
+const useSelectors = () => {
+    return {
+        searchFilm: useSelector(selectSearchFilm),
+    }
+}
+
+export const SearchBar = () => {
+    const {searchTitle} = useActions();
+    const {searchFilm} = useSelectors();
+
     return (
         <div>
             <label htmlFor="title">Title</label>
-            <input type="text" value={serchFilms} id="title"
+            <input type="text" value={searchFilm} id="title"
             onChange={event =>{
-                setSerchFilms(event.target.value)}}/>
-            <button  onClick={() =>{
-                this.props.searchTitle(serchFilms)
+                searchTitle(event.target.value)}}/>
+            <button  onClick={() => {
+                searchTitle(searchFilm)
             }}
                 >Serch</button>
                 {/* <h1>{this.props.search}</h1> */}
         </div>
     )
 }
-
-const mapStateToProps = state =>{
-    return{
-        search: state.title
-    }
-}
-
-const mapDispatchToProps = dispatch =>{
-    return{
-        searchTitle: (title) => dispatch({type: 'SEARCH_TITLE', title:title})
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(SearchBar);

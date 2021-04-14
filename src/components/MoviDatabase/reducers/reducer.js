@@ -3,6 +3,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState , action) =>{
+    console.log(state);
     if (action.type === 'SEARCH_TITLE'){
         return {
             ...state,

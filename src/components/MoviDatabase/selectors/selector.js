@@ -1,0 +1,1 @@
+export const selectSearchFilm = state => state.title;
