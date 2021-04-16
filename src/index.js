@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import {createStore} from 'redux';
 import {Provider} from 'react-redux'
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import reducer from './components/MoviDatabase/reducers/reducer'
-
-const store = createStore(reducer);
-
+import { rootStore } from './store/rootStore';
 
 axios.interceptors.request.use(request =>{
     return request
@@ -26,7 +22,7 @@ axios.interceptors.request.use(response =>{
     });
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={rootStore}>
   <React.StrictMode>
     <App />
   </React.StrictMode>

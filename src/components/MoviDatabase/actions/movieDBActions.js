@@ -1,0 +1,1 @@
+export const searchTitleAction = title => ({type: 'SEARCH_TITLE', payload: {title}})

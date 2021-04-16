@@ -1,5 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { searchTitleAction } from '../MoviDatabase/actions/movieDBActions';
 import { selectSearchFilm } from '../MoviDatabase/selectors/selector';
 
 const useActions = () => {
@@ -7,7 +8,7 @@ const useActions = () => {
 
     return {
         searchTitle: (title) => {
-            dispatch({type: 'SEARCH_TITLE', title})
+            dispatch(searchTitleAction(title))
         }
     }
 }

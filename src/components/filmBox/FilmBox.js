@@ -22,7 +22,17 @@ export default function FilmBox() {
     }, [title]);
     /// - AXIOS METHOD
     
-    const addFilm = film =>{
+    console.log(1);
+    setTimeout(() => {
+      console.log(2);
+    }, 0);
+    (() => {
+      console.log(3);
+    })()
+    console.log(4);
+
+
+    const addFilm = film => {
 
 
       axiosMD.getData(filmState).then(res => {
